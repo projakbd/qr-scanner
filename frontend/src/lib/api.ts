@@ -41,7 +41,7 @@ export async function apiLogin(email: string, password: string) {
 
 export async function apiLogout() {
   const res = await fetch(`${BASE_URL}/api/v1/auth/logout`, {
-    method: 'DELETE',
+    method: 'POST',
     headers: authHeaders(),
   });
   return res.ok;
