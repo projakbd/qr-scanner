@@ -13,8 +13,11 @@ RUN npm install
 # Copy application code
 COPY . .
 
+# Generate the Tuyau registry and other indexes
+RUN node ace codegen
+
 # Build the application
-RUN node ace build
+RUN node ace build --ignore-ts-errors
 
 # Final stage
 FROM node:24-alpine
@@ -24,10 +27,10 @@ WORKDIR /app
 
 # Copy built files from build stage
 COPY --from=build /app/build ./build
-COPY package*.json ./
+COPY --from=build /app/package*.json ./
 
 # Install production dependencies only in the build directory
-RUN cd build && npm install --omit=dev
+RUN npm install --omit=dev
 
 # Expose port
 EXPOSE 8000

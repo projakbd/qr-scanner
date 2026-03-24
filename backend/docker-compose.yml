@@ -1,7 +1,9 @@
 services:
   app:
-    build: .
+    image: ghcr.io/${GITHUB_USER_NAME}/qr-scanner:latest
     restart: always
+    env_file:
+      - .env
     environment:
       - NODE_ENV=production
       - PORT=8000
