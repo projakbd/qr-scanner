@@ -1,0 +1,15 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "rootDir": "../",
+    "outDir": "../build/tests",
+    "types": [
+      "@japa/runner",
+      "@japa/assert",
+      "@japa/api-client",
+      "@japa/plugin-adonisjs"
+    ]
+  },
+  "include": ["./**/*.ts"],
+  "exclude": ["../build"]
+}
