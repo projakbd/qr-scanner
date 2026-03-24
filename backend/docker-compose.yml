@@ -9,14 +9,6 @@ services:
       - NODE_ENV=production
       - PORT=8000
       - HOST=0.0.0.0
-      - APP_KEY=${APP_KEY}
-      - DB_HOST=${DB_HOST}
-      - DB_PORT=${DB_PORT}
-      - DB_USER=${DB_USER}
-      - DB_PASSWORD=${DB_PASSWORD}
-      - DB_DATABASE=${DB_DATABASE}
-      - SESSION_DRIVER=cookie
-      - LOG_LEVEL=info
     networks:
       - app-network
 
