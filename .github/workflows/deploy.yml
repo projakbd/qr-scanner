@@ -36,6 +36,11 @@ jobs:
           APP_URL: http://localhost:3333
           SESSION_DRIVER: memory
           DB_CONNECTION: sqlite
+          DB_HOST: 127.0.0.1
+          DB_PORT: 5432
+          DB_USER: postgres
+          DB_PASSWORD: 1234
+          DB_DATABASE: scanner_app
           LIMITER_STORE: memory
 
   build-and-push:
