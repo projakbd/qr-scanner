@@ -2,10 +2,10 @@ name: Deploy Backend
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
     paths:
-      - 'backend/**'
-      - '.github/workflows/deploy.yml'
+      - "backend/**"
+      - ".github/workflows/deploy.yml"
 
 jobs:
   test:
@@ -15,8 +15,8 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '24'
-          cache: 'npm'
+          node-version: "24"
+          cache: "npm"
           cache-dependency-path: backend/package-lock.json
 
       - name: Install Dependencies
@@ -51,8 +51,8 @@ jobs:
           context: ./backend
           push: true
           tags: |
-            ghcr.io/${{ github.repository_owner }}/omnidevx-backend:latest
-            ghcr.io/${{ github.repository_owner }}/omnidevx-backend:${{ github.sha }}
+            ghcr.io/${{ github.repository_owner }}/qr-scanner:latest
+            ghcr.io/${{ github.repository_owner }}/qr-scanner:${{ github.sha }}
 
   deploy:
     needs: build-and-push
