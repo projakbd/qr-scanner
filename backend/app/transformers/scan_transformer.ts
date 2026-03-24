@@ -1,5 +1,5 @@
 import { BaseTransformer } from '@adonisjs/core/transformers'
-import Scan from '#models/scan'
+import type Scan from '#models/scan'
 
 export default class ScanTransformer extends BaseTransformer<Scan> {
   toObject() {

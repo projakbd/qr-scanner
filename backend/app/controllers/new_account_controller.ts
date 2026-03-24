@@ -7,7 +7,11 @@ export default class NewAccountController {
   async store({ request, serialize }: HttpContext) {
     const payload = await request.validateUsing(signupValidator)
 
-    const user = await User.create({ fullName: payload.fullName, email: payload.email, password: payload.password })
+    const user = await User.create({
+      fullName: payload.fullName,
+      email: payload.email,
+      password: payload.password,
+    })
     const token = await User.accessTokens.create(user)
 
     return serialize({

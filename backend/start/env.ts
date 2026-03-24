@@ -49,5 +49,5 @@ export default await Env.create(new URL('../', import.meta.url), {
   |----------------------------------------------------------
   */
   FRONTEND_URL: Env.schema.string.optional(),
-  CORS_ORIGIN: Env.schema.string.optional()
+  CORS_ORIGIN: Env.schema.string.optional(),
 })
