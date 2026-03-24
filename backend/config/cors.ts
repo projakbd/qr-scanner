@@ -23,7 +23,7 @@ const corsConfig = defineConfig({
     ? true
     : (env.get('CORS_ORIGIN') || env.get('FRONTEND_URL') || '')
         .split(',')
-        .map((origin) => origin.trim())
+        .map((origin) => origin.trim().replace(/\/$/, ''))
         .filter(Boolean),
 
   /**

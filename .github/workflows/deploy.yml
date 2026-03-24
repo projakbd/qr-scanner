@@ -96,10 +96,10 @@ jobs:
           envs: GITHUB_ACTOR
           script: |
             cd /home/ubuntu/app
+            echo "GITHUB_USER_NAME=$GITHUB_ACTOR" > .env.docker
             echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u $GITHUB_ACTOR --password-stdin
-            export GITHUB_USER_NAME=$GITHUB_ACTOR
-            docker compose pull
-            docker compose up -d --remove-orphans
+            docker compose --env-file .env.docker pull
+            docker compose --env-file .env.docker up -d --remove-orphans
             docker system prune -f
         env:
           GITHUB_ACTOR: ${{ github.actor }}

@@ -1,10 +1,10 @@
 services:
   app:
     image: ghcr.io/${GITHUB_USER_NAME}/qr-scanner:latest
-    command: sh -c "node ace migration:run --force && node build/bin/server.js"
-    restart: always
+    command: sh -c "node build/ace.js migration:run --force && node build/bin/server.js"
     env_file:
       - .env
+    restart: always
     environment:
       - NODE_ENV=production
       - PORT=8000
