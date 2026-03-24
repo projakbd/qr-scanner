@@ -36,4 +36,4 @@ jobs:
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
           vercel-args: "--prod"
           working-directory: ./frontend
-          vercel-project-name: "qr-scanner"
+          vercel-version: 39.3.0
