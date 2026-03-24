@@ -13,9 +13,6 @@ RUN npm install
 # Copy application code
 COPY . .
 
-# Generate the Tuyau registry and other indexes
-RUN node ace codegen
-
 # Build the application
 RUN node ace build --ignore-ts-errors
 
