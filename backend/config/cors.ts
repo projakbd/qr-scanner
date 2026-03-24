@@ -22,9 +22,9 @@ const corsConfig = defineConfig({
   origin: app.inDev
     ? true
     : (env.get('CORS_ORIGIN') || env.get('FRONTEND_URL') || '')
-      .split(',')
-      .map((origin) => origin.trim())
-      .filter(Boolean),
+        .split(',')
+        .map((origin) => origin.trim())
+        .filter(Boolean),
 
   /**
    * HTTP methods accepted for cross-origin requests.
