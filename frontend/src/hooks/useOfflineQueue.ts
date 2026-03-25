@@ -37,16 +37,31 @@ export function useOfflineQueue(isAuthenticated: boolean, onSynced?: () => void)
         await apiPostScan(scan.barcodeData, scan.format, scan.deviceInfo);
         await removePendingScan(key);
         setPendingCount(c => Math.max(0, c - 1));
-      } catch { break; }
+      } catch (err: any) {
+        // If duplicate (409) or bad request (400), remove from queue as it won't succeed later
+        if (err.status === 409 || err.status === 400) {
+          await removePendingScan(key);
+          setPendingCount(c => Math.max(0, c - 1));
+          continue;
+        }
+        break; // Stop for other errors (network, server down)
+      }
     }
     setSyncing(false);
     onSynced?.();
   }, [syncing, onSynced, isAuthenticated]);
 
   useEffect(() => {
+    if (isAuthenticated && navigator.onLine && pendingCount > 0) {
+      syncQueue();
+    }
+  }, [isAuthenticated, pendingCount, syncQueue]);
+
+  useEffect(() => {
     if (isAuthenticated) {
-      window.addEventListener('online', syncQueue);
-      return () => window.removeEventListener('online', syncQueue);
+      const handleOnline = () => syncQueue();
+      window.addEventListener('online', handleOnline);
+      return () => window.removeEventListener('online', handleOnline);
     }
   }, [syncQueue, isAuthenticated]);
 
